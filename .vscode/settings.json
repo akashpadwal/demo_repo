@@ -1,0 +1,4 @@
+{
+    "jenkins.pipeline.linter.connector.url": "http://18.117.80.199:8080/pipeline-model-converter/validate",
+    "jenkins.pipeline.linter.connector.user": "Demo_user"
+}
