@@ -17,7 +17,7 @@ pipeline {
                 }
             }
         }
- stage("Publish to Nexus Repository Manager") {
+stage("Publish to Nexus Repository Manager") {
 
             steps {
 
@@ -42,11 +42,11 @@ pipeline {
                             
                             protocol: 'http',
 
-                            nexusUrl: '18.118.211.58:8081/',
+                            nexusUrl: '18.118.211.58:8081',
 
-                            groupId: 'com.mycompany.app',
+                            groupId: 'pom.com.mycompany.app',
 
-                            version: '1.0-SNAPSHOT',
+                            version: 'pom.1.0-SNAPSHOT',
 
                             repository: 'maven-central-repository',
 
@@ -85,5 +85,5 @@ pipeline {
             }
 
         }
-} 
+}
 }
