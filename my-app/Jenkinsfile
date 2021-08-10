@@ -3,21 +3,15 @@ pipeline {
     tools {
         maven "MAVEN"
     }
-    stages {
-        stage('Initialize'){
-            steps{
-                echo "PATH = ${M2_HOME}/bin:${PATH}"
-                echo "M2_HOME = /opt/maven"
-            }
-        }
-       stage('Build Maven') {
+    stages {  
+        stage('Build Maven') {
             steps{
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GIT_REPO', url: 'https://github.com/akashpadwal/demo_repo.git']]])
-
+                
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
                 
             }
-        }   
+        } 
 stage("Publish to Nexus Repository Manager") {
 
             steps {
