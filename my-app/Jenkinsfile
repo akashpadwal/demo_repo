@@ -10,13 +10,14 @@ pipeline {
                 echo "M2_HOME = /opt/maven"
             }
         }
-        stage('Build') {
-            steps {
-                dir("/var/lib/jenkins/workspace/first_pipeline/my-app") {
-                sh 'mvn -B -DskipTests clean package'
-                }
+       stage('Build Maven') {
+            steps{
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'GIT_REPO', url: 'https://github.com/akashpadwal/demo_repo.git']]])
+
+                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                
             }
-        }
+        }   
 stage("Publish to Nexus Repository Manager") {
 
             steps {
